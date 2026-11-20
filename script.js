@@ -1,0 +1,29 @@
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('active');
+  });
+});
+
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const name = this.name.value;
+  const email = this.email.value;
+  const phone = this.phone.value;
+  const service = this.service.value;
+  const message = this.message.value;
+
+  const subject = encodeURIComponent(`TCS Enquiry - ${service || 'General'}`);
+  const body = encodeURIComponent(
+    `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nService: ${service}\n\nMessage:\n${message}`
+  );
+
+  window.location.href = `mailto:paszbyforgold@gmail.com?subject=${subject}&body=${body}`;
+});
